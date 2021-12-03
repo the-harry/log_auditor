@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'colorize'
+require 'log_auditor'
+
+abort('No log file provided...'.colorize(:red)) if ARGV.empty?
+
+LogAuditor::Parser.new(
+  reader: LogAuditor::Reader.new(ARGV[0]),
+  formatter: LogAuditor::Formatter,
+  presenter: LogAuditor::Presenter
+).parse!
