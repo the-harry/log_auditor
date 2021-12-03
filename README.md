@@ -26,33 +26,9 @@ After installing the gem it'll install a `parser` executable that receives a log
 
 ```bash
 parser spec/fixtures/webserver.log
-
-+---------------------------+
-|     Requests counter      |
-+--------------+------------+
-| PATH         | COUNTER    |
-+--------------+------------+
-| /about/2     | 180 visits |
-| /contact     | 178 visits |
-| /index       | 164 visits |
-| /about       | 162 visits |
-| /help_page/1 | 160 visits |
-| /home        | 156 visits |
-+--------------+------------+
-========================================================================
-+--------------------------------+
-|     Unique requests counter      |
-+--------------+-----------------+
-| PATH         | COUNTER         |
-+--------------+-----------------+
-| /index       | 24 unique views |
-| /home        | 24 unique views |
-| /contact     | 24 unique views |
-| /help_page/1 | 24 unique views |
-| /about/2     | 23 unique views |
-| /about       | 22 unique views |
-+--------------+-----------------+
 ```
+
+![example](https://user-images.githubusercontent.com/38408536/144623554-a11b12c3-f9b4-432c-b2f5-db6d3b263c9e.png)
 
 ## Development
 
@@ -86,11 +62,13 @@ rubocop -A
 rspec
 ```
 
+Min coverage is set to 99%, please keep it like this :D
+
 On CI the specs run with the flag `--fail-fast` to save some time, so ensure everything run smoothly locally before pushing the code.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/log_auditor. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/log_auditor/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/the-harry/log_auditor. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/the-harry/log_auditor/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -98,7 +76,7 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the LogAuditor project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/log_auditor/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the LogAuditor project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/the-harry/log_auditor/blob/master/CODE_OF_CONDUCT.md).
 
 ## TODO's
 
