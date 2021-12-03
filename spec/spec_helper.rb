@@ -11,7 +11,7 @@ SimpleCov.start do
   add_filter '/pkg'
 end
 
-SimpleCov.minimum_coverage 65
+SimpleCov.minimum_coverage 99
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
@@ -20,3 +20,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+require File.join(Dir.pwd, '/spec/support/shared_examples/errors')

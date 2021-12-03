@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'errors'
+
 class LogAuditor::Formatter
   attr_reader :raw_data
   attr_accessor :requests, :uniq_requests
