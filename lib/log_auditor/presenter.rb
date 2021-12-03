@@ -34,7 +34,7 @@ class LogAuditor::Presenter
 
   def uniq_requests_table
     Terminal::Table.new(
-      title: 'Uniq requests counter'.colorize(:yellow),
+      title: 'Unique requests counter'.colorize(:yellow),
       headings: ['PATH'.colorize(:blue), 'COUNTER'.colorize(:blue)],
       rows: uniq_requests.map do |request|
         [

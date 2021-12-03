@@ -29,7 +29,7 @@ RSpec.describe LogAuditor::Presenter do
 
     context 'When it prints unique requests' do
       it 'print table with headers' do
-        expect { subject }.to output(/Uniq requests counter/).to_stdout
+        expect { subject }.to output(/Unique requests counter/).to_stdout
       end
 
       it 'uses the correct sulfix' do
