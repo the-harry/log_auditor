@@ -3,6 +3,7 @@ PATH
   specs:
     log_auditor (0.1.0)
       colorize
+      rake
       terminal-table
 
 GEM
@@ -65,7 +66,6 @@ PLATFORMS
 DEPENDENCIES
   log_auditor!
   pry
-  rake
   rspec
   rubocop
   simplecov

@@ -14,6 +14,7 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - spec/**/*
+    - log_auditor.gemspec
 
 Style/StringLiterals:
   Enabled: true
