@@ -26,10 +26,11 @@ Gem::Specification.new do |spec|
   spec.executables = ['parser']
   spec.require_paths = ['lib']
 
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_dependency 'colorize'
+  spec.add_dependency 'rake'
+  spec.add_dependency 'terminal-table'
 
   spec.add_development_dependency 'pry'
-  spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'
