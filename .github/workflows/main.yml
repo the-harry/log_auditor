@@ -1,27 +1,66 @@
-name: Ruby
+name: Ruby pipeline
 
 on:
   push:
-    branches:
-      - master
-
+    branches: [ master ]
   pull_request:
+    branches: [ master ]
 
 jobs:
-  build:
+  linter:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        ruby:
-          - 3.0.2
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+    - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Run the default task
-      run: bundle exec rake
+        ruby-version: 3.0.2
+
+    - uses: actions/cache@v2
+      env:
+        cache-name: cache-rails-deps
+      with:
+        path: /usr/local/bundle
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+                    ${{ runner.os }}-build-${{ env.cache-name }}-
+                    ${{ runner.os }}-build-
+                    ${{ runner.os }}-
+
+    - name: Build deps
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Run Linter (Rubocop)
+      run: |
+        bundle exec rubocop --format json -o report.json
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0.2
+
+    - uses: actions/cache@v2
+      env:
+        cache-name: cache-rails-deps
+      with:
+        path: /usr/local/bundle
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+                    ${{ runner.os }}-build-${{ env.cache-name }}-
+                    ${{ runner.os }}-build-
+                    ${{ runner.os }}-
+
+    - name: Build deps
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Run specs
+      run: |
+        bundle exec rspec --fail-fast
