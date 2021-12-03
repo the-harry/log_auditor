@@ -60,9 +60,9 @@ PLATFORMS
 DEPENDENCIES
   log_auditor!
   pry
-  rake (~> 13.0)
-  rspec (~> 3.0)
-  rubocop (~> 1.21)
+  rake
+  rspec
+  rubocop
   simplecov
 
 BUNDLED WITH
