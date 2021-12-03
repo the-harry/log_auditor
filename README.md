@@ -1,8 +1,6 @@
-# LogAuditor
+# log_auditor
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/log_auditor`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Basic log parser gem that receives a list of requests containing the request path and ip and generates two tables, one sorting the requests by the most page views , and other for unique requests by ip also sorted by most page views.
 
 ## Installation
 
@@ -16,19 +14,77 @@ And then execute:
 
     $ bundle install
 
-Or install it yourself as:
+Or install it yourself as(RECOMENDED):
 
     $ gem install log_auditor
 
 ## Usage
 
-TODO: Write usage instructions here
+After installing the gem it'll install a `parser` executable that receives a log file path as argument in STDIN.
+
+```bash
+parser spec/fixtures/webserver.log
+
++---------------------------+
+|     Requests counter      |
++--------------+------------+
+| PATH         | COUNTER    |
++--------------+------------+
+| /about/2     | 180 visits |
+| /contact     | 178 visits |
+| /index       | 164 visits |
+| /about       | 162 visits |
+| /help_page/1 | 160 visits |
+| /home        | 156 visits |
++--------------+------------+
+========================================================================
++--------------------------------+
+|     Unique requests counter      |
++--------------+-----------------+
+| PATH         | COUNTER         |
++--------------+-----------------+
+| /index       | 24 unique views |
+| /home        | 24 unique views |
+| /contact     | 24 unique views |
+| /help_page/1 | 24 unique views |
+| /about/2     | 23 unique views |
+| /about       | 22 unique views |
++--------------+-----------------+
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Put your Ruby code in the file `lib/log_auditor`.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+```bash
+# build the container
+docker-compose build
+
+# access the container
+docker-compose run web bash
+
+# install dependencies
+bin/setup
+
+# To experiment with that code, for an interactive prompt run
+bin/console
+```
+
+Note: To test any log file just make sure it's in the application directory so docker volume can find it.
+
+## Quality
+
+Please keep it nice and tidy by running rubocop and rspec, if possible in this order, since rubocop autofix may break some spec.
+
+```bash
+rubocop -A
+
+rspec
+```
+
+On CI the specs run with the flag `--fail-fast` to save some time, so ensure everything run smoothly locally before pushing the code.
 
 ## Contributing
 
@@ -41,3 +97,11 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the LogAuditor project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/log_auditor/blob/master/CODE_OF_CONDUCT.md).
+
+## TODO's
+
+- Improve formatter grouping approach
+- Add setup for InfluxDB to save requests as metrics
+- Dynamically create Grafana dashboards using a JSON scaffold
+- Create Git Wiki and allow discussion on repo
+- Setup automatic CD script for gem release
