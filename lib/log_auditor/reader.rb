@@ -15,8 +15,7 @@ class LogAuditor::Reader
     raise LogAuditor::Errors::NoFileError unless File.exist?(log_file)
 
     @data = fetch_content
-  rescue Errno, TypeError => e
-    puts "Error #{e.message}"
+  rescue Errno, TypeError
     raise LogAuditor::Errors::FileReadError
   end
 
