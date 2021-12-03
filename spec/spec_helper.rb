@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'log_auditor'
-require 'pry'
 require 'simplecov'
 
 SimpleCov.start do
@@ -9,9 +7,13 @@ SimpleCov.start do
   add_filter '/bin'
   add_filter '/coverage'
   add_filter '/pkg'
+  add_filter '/spec'
 end
 
 SimpleCov.minimum_coverage 99
+
+require 'log_auditor'
+require 'pry'
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
