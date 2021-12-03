@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "log_auditor/version"
+require_relative 'log_auditor/version'
 
-module LogAuditor
-  class Error < StandardError; end
-  # Your code goes here...
+# Your code goes here...
+class LogAuditor::Error < StandardError
 end
