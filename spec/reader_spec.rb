@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe LogAuditor::Reader do
-  describe '#read' do
+  describe '#read!' do
     subject { described_class.new(log_file).read! }
 
     context 'When it successfully read the file' do
