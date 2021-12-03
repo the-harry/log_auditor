@@ -2,6 +2,8 @@
 
 Basic log parser gem that receives a list of requests containing the request path and ip and generates two tables, one sorting the requests by the most page views , and other for unique requests by ip also sorted by most page views.
 
+**NOTE: THIS IS A DEMO GEM ONLY, IF YOU WANT TO USE THIS NAME JUST REACH ME ON EMAIL, SO I CAN YANK THIS GEM FROM RUBYGEMS FOR YOU.**
+
 ## Installation
 
 Add this line to your application's Gemfile:
